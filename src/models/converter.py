@@ -1,5 +1,5 @@
 import re
-from typing import Optional
+from typing import Optional, List
 from src.config import regex_pattern, signal
 
 class Converter:
@@ -22,7 +22,7 @@ class Converter:
         return None
 
     @classmethod
-    def _get_by_one_entry(cls, entry_text: str, text: str) -> Optional[list[float, float]]:
+    def _get_by_one_entry(cls, entry_text: str, text: str) -> Optional[List[float]]:
         re_pattern = regex_pattern.entry.format(entry_text)
         match = re.search(re_pattern,  text)
         if match:
@@ -53,7 +53,7 @@ class Converter:
         return stoploss
 
     @classmethod
-    def _get_by_one_target(cls, target_text: str, text: str) -> Optional[list[float, float]]:
+    def _get_by_one_target(cls, target_text: str, text: str) -> Optional[List[float]]:
         re_pattern = regex_pattern.target.format(target_text)
         match = re.search(re_pattern,  text)
         if match:
@@ -69,7 +69,7 @@ class Converter:
         return [target1, target2]
 
     @classmethod
-    def get_entry(cls, text) -> Optional[list[float, float]]:
+    def get_entry(cls, text) -> Optional[List[float]]:
         for entry_text in signal.entry:
             entries = cls._get_by_one_entry(entry_text, text)
             if entries:
@@ -85,7 +85,7 @@ class Converter:
         return None
 
     @classmethod
-    def get_targets(cls, text) -> Optional[list[float, float]]:
+    def get_targets(cls, text) -> Optional[List[float]]:
         for sl_text in signal.target_signals:
             stoploss = cls._get_by_one_target(sl_text, text)
             if stoploss:
