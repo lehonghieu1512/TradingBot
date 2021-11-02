@@ -2,9 +2,8 @@ import re
 from typing import Optional, List
 from src.config import regex_pattern, signal
 
+
 class Converter:
-
-
 
     @classmethod
     def clean_text(cls, text) -> str:
@@ -24,7 +23,7 @@ class Converter:
     @classmethod
     def _get_by_one_entry(cls, entry_text: str, text: str) -> Optional[List[float]]:
         re_pattern = regex_pattern.entry.format(entry_text)
-        match = re.search(re_pattern,  text)
+        match = re.search(re_pattern, text)
         if match:
             try:
                 entry1 = float(match.group(1))
@@ -40,7 +39,7 @@ class Converter:
     @classmethod
     def _get_by_one_stoploss(cls, sl_text: str, text: str) -> Optional[float]:
         re_pattern = regex_pattern.stoploss.format(sl_text)
-        match = re.search(re_pattern,  text)
+        match = re.search(re_pattern, text)
         if match:
             try:
                 stoploss = float(match.group(1))
@@ -55,7 +54,7 @@ class Converter:
     @classmethod
     def _get_by_one_target(cls, target_text: str, text: str) -> Optional[List[float]]:
         re_pattern = regex_pattern.target.format(target_text)
-        match = re.search(re_pattern,  text)
+        match = re.search(re_pattern, text)
         if match:
             try:
                 target1 = float(match.group(1))

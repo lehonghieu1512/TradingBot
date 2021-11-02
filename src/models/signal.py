@@ -1,7 +1,7 @@
 from src.models.converter import Converter
 
-class Signal:
 
+class Signal:
 
     @classmethod
     def text_to_signal(cls, text: str):
@@ -10,7 +10,6 @@ class Signal:
 
         if not symbol:
             return None
-
 
         text = Converter.clean_text(text)
 
@@ -26,19 +25,15 @@ class Signal:
 
         target1, target2 = targets
 
-
         stoploss = Converter.get_stoploss(text)
         if not stoploss:
             return None
 
         return Signal(symbol, entry1, target1, stoploss)
 
-
-
-    def __init__(self, symbol: str, entry: float, target: float, sl: float, leverage: float =3):
+    def __init__(self, symbol: str, entry: float, target: float, sl: float, leverage: float = 3):
         self.symbol = symbol
         self.entry = entry
         self.target = target
         self.sl = sl
         self.leverage = leverage
-
