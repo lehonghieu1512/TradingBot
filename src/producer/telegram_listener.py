@@ -15,6 +15,8 @@ def run(client: TelegramClient, chat_ids: list, logger: Logger):
 
         text:str = event.message.message
         signal = Signal.text_to_signal(text.lower())
+        chat_name = utils.get_display_name(await event.get_chat())
         if signal:
-            chat_name = utils.get_display_name(await event.get_chat())
             print(f"chat name: {chat_name}| {(datetime.now() + timedelta(hours=7))}| {signal.__dict__}")
+        else:
+            print(f"chat name: {chat_name}| {(datetime.now() + timedelta(hours=7))}| {text}")
