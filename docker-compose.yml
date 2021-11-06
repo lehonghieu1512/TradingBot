@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  producer:
+    build:
+      dockerfile: dockers/Producer.Dockerfile
+      context: .
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./src:/app/src
+      - ./main.py:/app/main.py
+    command: bash -c "python main.py"
+    network_mode: host
+
