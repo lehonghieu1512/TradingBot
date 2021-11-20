@@ -9,6 +9,7 @@ services:
     volumes:
       - ./src:/app/src
       - ./main.py:/app/main.py
+#      - ./session.session:/app/session.session
     command: bash -c "python main.py"
     network_mode: host
 
